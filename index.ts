@@ -7,8 +7,10 @@ const port = 3000;
 app.use(cors());
 
 app.use(bodyParser.json());
-app.get('/', function (req, res) {
-    res.send('Hello Node JS!');
+app.get('/', (req, res) => {
+    return res.json({
+        name: 'jg park',
+    });
 });
     
 const server = app.listen(3000, function () {
