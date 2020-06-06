@@ -6,3 +6,5 @@ yarn init
 
 yarn add @types/node
 node index.ts
+
+yarn add cors --save
