@@ -5,3 +5,4 @@ yarn add express --save
 yarn init
 
 yarn add @types/node
+node index.ts
