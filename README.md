@@ -8,3 +8,4 @@ yarn add @types/node
 node index.ts
 
 yarn add cors --save
+node index.ts
