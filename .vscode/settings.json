@@ -1,0 +1,23 @@
+{
+    "editor.tabSize": 4,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+    },
+    "editor.formatOnSave": true,
+    "typescript.tsdk": "node_modules\\typescript\\lib",
+    "workbench.colorCustomizations": {
+        "activityBar.foreground": "#7A9EFF",
+        "badge.background": "#0088AA"
+    },
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "support.constant",
+                "settings": {
+                    "foreground": "#7A9EFF",
+                    "fontStyle": "italic"
+                }
+            }
+        ]
+    },
+}
