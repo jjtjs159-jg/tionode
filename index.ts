@@ -68,32 +68,52 @@ const server = http.createServer(app);
 
 const io = socketIo(server);
 
-
 let interval;
+//
 
-io.on("connection", (socket) => {
-    console.log("New client connected");
+io.on('connection', (socket) => {
+    console.log(`Connected: ${socket.id}`);
 
-    socket.on('chat-msg', (msg) => {
-        console.log('message', msg)
-        io.emit('chat-msg', msg)
-    })
+    socket.on('disconnect', () =>
+        console.log(`Disconnected: ${socket.id}`));
 
-    if (interval) {
-        clearInterval(interval);
-    }
+    socket.on('join', (room) => {
+        console.log(`Socket ${socket.id} joining ${room}`);
+        socket.join(room);
+    });
 
-    interval = setInterval(() => getApiAndEmit(socket), 1000);
-    socket.on("disconnect", () => {
-        console.log("Client disconnected");
-        clearInterval(interval);
+    socket.on('chat', (data) => {
+        const { message, room } = data;
+        console.log(`msg: ${message}, room: ${room}`);
+        io.to(room).emit('chat', message);
     });
 });
 
-const getApiAndEmit = socket => {
-    const response = new Date();
-    // Emitting a new message. Will be consumed by the client
-    socket.emit("FromAPI", response);
-};
+//
+
+// io.on("connection", (socket) => {
+//     console.log("New client connected");
+
+//     socket.on('chat-msg', (msg) => {
+//         console.log('message', msg)
+//         io.emit('chat-msg', msg)
+//     })
+
+//     if (interval) {
+//         clearInterval(interval);
+//     }
+
+//     interval = setInterval(() => getApiAndEmit(socket), 1000);
+//     socket.on("disconnect", () => {
+//         console.log("Client disconnected");
+//         clearInterval(interval);
+//     });
+// });
+
+// const getApiAndEmit = socket => {
+//     const response = new Date();
+//     // Emitting a new message. Will be consumed by the client
+//     socket.emit("FromAPI", response);
+// };
 
 server.listen(port, () => console.log(`Listening on port ${port}`));
