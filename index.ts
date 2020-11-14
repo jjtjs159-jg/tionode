@@ -82,10 +82,12 @@ io.on('connection', (socket) => {
         socket.join(room);
     });
 
-    socket.on('chat', (data) => {
-        const { message, room } = data;
-        console.log(`msg: ${message}, room: ${room}`);
-        io.to(room).emit('chat', message);
+    socket.on('chat', (payload) => {
+        console.log('chat')
+        console.log(payload)
+        const { room, data } = payload;
+        // console.log(`msg: ${message}, room: ${room}`);
+        io.to(room).emit('chat', { ...data });
     });
 });
 
