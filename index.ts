@@ -45,7 +45,7 @@ const http = require("http");
 const socketIo = require("socket.io");
 const cors = require("cors");
 
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 8080;
 // const index = require("router");
 
 const app = express();
