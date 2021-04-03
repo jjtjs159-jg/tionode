@@ -7,9 +7,10 @@ const maria = require('./maria');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const joinRouter = require('./routes/sign/join');
 
 var app = express();
-// maria.connect();
+maria.connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/join', joinRouter);
 
 app.use(express.static('public'));
 
