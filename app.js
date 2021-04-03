@@ -3,11 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const maria = require('./maria');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+// maria.connect();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,7 +25,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use(express.static('public'));
-app.use('/static', express.static(__dirname + 'public'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
